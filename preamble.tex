@@ -1,0 +1,272 @@
+% Some basic packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+%\usepackage[dutch]{babel}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+% Don't indent paragraphs, leave some space between them
+\usepackage{parskip}
+\usepackage[]{quoting}
+
+% Hide page number when page is empty
+\usepackage{emptypage}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{tikz-cd}
+\usepackage[margin=1in]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{Lecture \thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
+% Other font I sometimes use.
+% \usepackage{cmbright}
+
+% Math stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{cleveref}
+% Fancy script capitals
+\usepackage{mathrsfs}
+\usepackage{cancel}
+% Bold math
+\usepackage{bm}
+%\renewcommand{\familydefault}{\sfdefault}
+\usepackage{libertine}
+\renewcommand{\familydefault}{\sfdefault}
+% Some shortcuts
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\newcommand\F{\ensuremath{\mathbb{F}}}
+\newcommand{\aff}{\ensuremath{\mathbb{A}}}
+\newcommand{\proj}{\ensuremath{\mathbb{P}}}
+\newcommand{\dd}{\mathrm{d}}
+%\newcommand{\st}{\;|\;}
+\newcommand{\st}{%
+  \nonscript\;
+  \ifnum\currentgrouptype=16
+    \;\middle|\;
+  \else
+    \;|\;
+  \fi
+  \nonscript\;}
+\newcommand{\ltr}{\par \noindent \framebox[1\width]{ $\implies$ } \hspace{.2cm}}
+\newcommand{\rtl}{\par \noindent \framebox[1\width]{ $\impliedby$ } \hspace{.2cm} }
+\newcommand{\abs}[1]{\left| #1 \right|}
+%\renewcommand{\span}{\ensuremath{\mathrm{span}}}
+
+\DeclareMathOperator{\sym}{Sym}
+\DeclareMathOperator{\orbit}{Or}
+\DeclareMathOperator{\stab}{Stab}
+\DeclareMathOperator{\fix}{Fix}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\ord}{Ord}
+\DeclareMathOperator{\mspec}{mSpec}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\frob}{Frob}
+\DeclareMathOperator{\id}{Id}
+\DeclareMathOperator{\colim}{colim}
+%\DeclareMathOperator{\hom}{Hom}
+\DeclareMathOperator{\loc}{loc}
+
+\newcommand{\open}{\underset{\text{open}}{\subset}}
+%\DeclareMathOperator{\span}{Span}
+% Easily typeset systems of equations (French package)
+\usepackage{systeme}
+
+% Put x \to \infty below \lim
+\let\svlim\lim\def\lim{\svlim\limits}
+
+%Make implies and impliedby shorter
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+
+% Add \contra symbol to denote contradiction
+\usepackage{stmaryrd} % for \lightning
+\newcommand\contra{\scalebox{1.5}{$\lightning$}}
+
+
+% horizontal rule
+\newcommand\hr{
+    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
+}
+
+% hide parts
+\newcommand\hide[1]{}
+
+% si unitx
+\usepackage{siunitx}
+
+% Environments
+\makeatother
+% For box around Definition, Theorem, \ldots
+\makeatother
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+
+\theoremstyle{definition}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+    }
+]{thmgreenbox}
+
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+    }
+]{thmbluebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue
+    }
+]{thmblueline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+    }
+]{thmredbox}
+
+\declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+
+\theoremstyle{thmgreenbox}
+\declaretheorem[style = thmgreenbox, name = Definitie]{definitie}
+\declaretheorem[style = thmgreenbox, name = Definition]{definition}
+%\newtheorem[nobreak=true]{definitie}{Definitie}
+\declaretheorem[style=thmredbox, name=Proposition]{proposition}
+\declaretheorem[style=thmredbox, name=Theorem]{theorem}
+\declaretheorem[style=thmredbox, name=Lemma]{lemma}
+\declaretheorem[style=thmredbox, name=Propositie]{propositie}
+\declaretheorem[style=thmredbox, name=Stelling]{stelling}
+\declaretheorem[style=thmredbox, name=Eigenschap]{eigenschap}
+\declaretheorem[style=thmredbox, name=Gevolg]{gevolg}
+\declaretheorem[style=thmredbox, name=Wet]{wet}
+\declaretheorem[style=thmredbox, name=Postulaat]{postulaat}
+\declaretheorem[style=thmredbox, numbered=no, name=Corollary]{corollary}
+\newmdtheoremenv{conclusie}{Conclusie}
+\newmdtheoremenv{toemaatje}{Toemaatje}
+\newmdtheoremenv{vermoeden}{Vermoeden}
+%\newmdtheoremenv{quote}{Quote}
+\declaretheorem[style=thmbluebox, name=Exercise, numbered=no]{exercise}
+\declaretheorem[style=thmbluebox, name=Herhaling, numbered=no]{herhaling}
+\declaretheorem[style=thmbluebox, name=Intermezzo, numbered=no]{intermezzo}
+\declaretheorem[style=thmbluebox, name=Observatie, numbered=no]{observatie}
+\declaretheorem[style=thmbluebox, name=Oefening, numbered=no]{oef}
+\declaretheorem[style=thmbluebox, name=Opmerking, numbered=no]{opmerking}
+\declaretheorem[style=thmbluebox, name=Fact, numbered=no]{fact}
+\declaretheorem[style=thmgreenbox, name=Notatie, numbered=no]{notatie}
+\declaretheorem[style=thmbluebox, name=TODO, numbered=no]{TODO}
+\newtheorem*{praktisch}{Praktisch}
+\newtheorem*{probleem}{Probleem}
+\newtheorem*{terminologie}{Terminologie}
+\newtheorem*{toepassing}{Toepassing}
+\newtheorem*{uovt}{UOVT}
+\newtheorem*{vb}{Voorbeeld}
+\newtheorem*{vraag}{Vraag}
+\newtheorem*{motivation}{Motivation}
+\newtheorem*{erratum}{Erratum}
+\newtheorem*{herinner}{Herinner}
+\newtheorem*{conjectuur}{Conjectuur}
+\newtheorem*{recall}{Recall}
+\newtheorem*{revision}{Revision}
+
+\newtheorem*{example}{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{problem}{Problem}
+\newtheorem*{observe}{Observe}
+\newtheorem*{property}{Property}
+\newtheorem*{intuition}{Intuition}
+
+% End example and intermezzo environments with a small diamond (just like proof
+% environments end with a small square)
+\usepackage{etoolbox}
+\AtEndEnvironment{vb}{\null\hfill$\diamond$}%
+\AtEndEnvironment{intermezzo}{\null\hfill$\diamond$}%
+% \AtEndEnvironment{opmerking}{\null\hfill$\diamond$}%
+
+% Fix some spacing
+% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=\parskip \thm@postskip=0pt
+}
+
+
+% These are the fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% LE: left even
+% RO: right odd
+% CE, CO: center even, center odd
+% My name for when I print my lecture notes to use for an open book exam.
+% \fancyhead[LE,RO]{Gilles Castel}
+
+
+\fancyfoot[RO,LE]{\thepage}  % Right odd,  Left even
+\fancyfoot[RE,LO]{}          % Right even, Left odd
+\fancyfoot[C]{\leftmark}     % Center
+
+\makeatother
+\usepackage{tcolorbox}
+
+% Make boxes breakable
+\tcbuselibrary{breakable}
+
+% Fix some stuff
+% %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
+\pdfsuppresswarningpagegroup=1
+
+
+% My name
+\author{Yonathan Fisseha}

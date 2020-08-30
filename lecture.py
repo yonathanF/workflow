@@ -6,10 +6,31 @@ import pystache
 import json
 from os import path
 from command import Command
+from datetime import datetime
 
 
 class LectureParser:
-    pass
+    def __init__(self, latex_file_path):
+        self.file_path = latex_file_path
+
+    def get_info(self):
+        result = []
+        with open(self.file_path) as latex_file:
+            line_number = 1
+            for line in latex_file:
+                if line_number > 13:
+                    break
+                if line_number == 6:  # date
+                    date_str = line[3:].strip().strip("\n")
+                    result.append(datetime.strptime(
+                        date_str, '%Y-%m-%d %H:%M:%S.%f'))
+
+                if line_number == 11:  # lecture_number
+                    result.append(int(line[21:-2])+1)
+                if line_number == 12:  # title
+                    result.append(line[9:-3].strip())
+                line_number += 1
+        return result
 
 
 class LectureFileBuilder:
@@ -27,6 +48,9 @@ class LectureFileBuilder:
 
     def lecture_number(self):
         return self.lecture_number
+
+    def date(self):
+        return "%% "+str(datetime.now())+"\n"
 
     def professor(self):
         return self.professor
@@ -62,6 +86,9 @@ class Lecture:
     def __init__(self, latex_file_path):
         self.file_path = latex_file_path
 
+        self.date, self.lecture_number, self.title = LectureParser(
+            latex_file_path).get_info()
+
     def form_pdf_path(self):
         return self.file_path[:-4] + ".pdf"
 
@@ -90,11 +117,17 @@ class Lecture:
         file_path = lecture_builder.write_to_file()
         return Lecture(file_path)
 
+    def __str__(self):
+        return str(self.lecture_number) + ": " + self.title
+
 
 if __name__ == "__main__":
     path_to_context = "/home/yonathan/Courses/Temp-Course/.project.json"
 
-    lecture = Lecture.create_new(path_to_context, "Introductions")
+    # lecture = Lecture(
+    # "/home/yonathan/Courses/Temp-Course/lectures/98_Introductions.tex")
+
+    lecture2 = Lecture.create_new(path_to_context, "Introductions")
     # lecture.edit().execute()
     # lecture.view().execute()
     # lecture.compile().execute()
