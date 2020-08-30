@@ -10,7 +10,10 @@ from project import Project
 from lecture import Lecture
 
 PROJECTS = {
-    "Temp Course": "/home/yonathan/Courses/Temp-Course/.project.json"
+    # "Temp Course": "/home/yonathan/Courses/Temp-Course/.project.json",
+    "Formal Verification": "/home/yonathan/Courses/formal-verification/.project.json",
+    "Simple Chisel": "/home/yonathan/Projects/Research/SimpleChisel/.project.json",
+    "Program Synthesis": "/home/yonathan/Courses/program-synthesis/.project.json"
 }
 
 CURRENT_PROJECT_PATH = None
@@ -24,14 +27,19 @@ def set_current_from_link():
 
 
 def choose_project():
-    set_current_from_link()
-    global CURRENT_PROJECT
-    CURRENT_PROJECT.unlink_soft_link().execute()
     projects = list(PROJECTS.keys())
     rofi = Rofi(rofi_args=["-i"])
     index, _ = rofi.select("Project to work on", projects)
     if index == -1:
         return
+
+    try:
+        set_current_from_link()
+        global CURRENT_PROJECT
+        CURRENT_PROJECT.unlink_soft_link().execute()
+    except:
+        pass
+
     CURRENT_PROJECT_PATH = PROJECTS.get(projects[index])
     CURRENT_PROJECT = Project(CURRENT_PROJECT_PATH)
     CURRENT_PROJECT.create_soft_link().execute()
@@ -62,7 +70,6 @@ def rofi_list_lectures():
 
 
 if __name__ == "__main__":
-
     try:
         if len(argv) == 1:
             exit()

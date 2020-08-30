@@ -71,7 +71,8 @@ class Project:
     def open_tmux_layout(self):
         """ Opens the projects tmuxp layout """
         if self.tmux_name:
-            return Command("kitty", ["--detach", "--execute", "tmuxp", "load", self.tmux_name])
+            # TODO seems broken
+            return Command("kitty", ["--detach", "--execute", "zsh", "-i", "-c", "tmuxp load " + self.tmux_name])
 
     def create_soft_link(self):
         """ Generates a command that creates a soft link of directory to active-topic.
